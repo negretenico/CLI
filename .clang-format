@@ -1,0 +1,8 @@
+# Use Google's style as a baseline
+BasedOnStyle: Google
+
+# Custom adjustments
+IndentWidth: 4
+ColumnLimit: 80
+SortIncludes: true
+AllowShortIfStatementsOnASingleLine: false

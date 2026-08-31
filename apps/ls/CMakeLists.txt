@@ -21,6 +21,11 @@ target_sources(NN_LS
 )
 
 #Libraries
+add_library(Types)
+target_sources(Types
+  PUBLIC
+    FILE_SET CXX_MODULES FILES types/index.cppm)
+
 add_library(Walk)
 target_sources(Walk
   PRIVATE
@@ -28,6 +33,9 @@ target_sources(Walk
   PUBLIC
     FILE_SET CXX_MODULES FILES walk/index.cppm
 )
+
+#Link type library 
+target_link_libraries(Walk PRIVATE Types)
 
 #Link the library to the executable
 target_link_libraries(NN_LS PRIVATE Walk)

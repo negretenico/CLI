@@ -1,13 +1,14 @@
 #include <filesystem>
 #include <print>
 #include <ranges>
-import Walk;
+import CWD;
+import Filter;
 import Types;
 int main(int argc, char *argv[]) {
-    Types::DirectoryEntries entries =
-        Walk::path(std::filesystem::current_path());
-    for (const auto &entry : entries) {
-        std::print("{}\n", entry.path().filename().string());
-    }
-    return 0;
+  const auto& working_dir = CWD::get();
+  auto filtered_entires = Filter::filter_by_is_directory(working_dir);
+  for( auto dir: filtered_entires ){
+    std::print("{}\n",dir.path().filename().string());
+  }
+  return 0;
 }

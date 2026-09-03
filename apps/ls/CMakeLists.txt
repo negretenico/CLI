@@ -26,16 +26,27 @@ target_sources(Types
   PUBLIC
     FILE_SET CXX_MODULES FILES types/index.cppm)
 
-add_library(Walk)
-target_sources(Walk
+add_library(CWD)
+target_sources(CWD
   PRIVATE
-    walk/index.cpp
+    cwd/index.cpp
   PUBLIC
-    FILE_SET CXX_MODULES FILES walk/index.cppm
-)
+    FILE_SET CXX_MODULES FILES cwd/index.cppm)
+
+
+
+
+add_library(Filter)
+target_sources(Filter
+  PRIVATE
+    filter/index.cpp
+  PUBLIC
+    FILE_SET CXX_MODULES FILES filter/index.cppm)
 
 #Link type library 
-target_link_libraries(Walk PRIVATE Types)
+target_link_libraries(Filter PRIVATE Types)
+target_link_libraries(CWD  PRIVATE Types)
 
 #Link the library to the executable
-target_link_libraries(NN_LS PRIVATE Walk)
+target_link_libraries(NN_LS PRIVATE Filter)
+target_link_libraries(NN_LS PRIVATE CWD)
